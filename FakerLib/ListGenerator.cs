@@ -22,7 +22,8 @@ namespace FakerLib
 
             for (int i = 0; i < elements; i++)
             {
-                addMethod.Invoke(result, new object[] { generatorContext.Generate(listType) });
+                var faker = new Faker(generatorContext);
+                addMethod.Invoke(result, new object[] { faker.Create(listType) });
             }
 
             return result;

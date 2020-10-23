@@ -27,7 +27,7 @@ namespace FakerLib
            return (T)Create(typeof(T));
         }
 
-        private object Create(Type t)
+        public object Create(Type t)
         {
             if (_types.Contains(t))
                 return null;

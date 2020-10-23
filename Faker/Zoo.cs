@@ -6,7 +6,7 @@ namespace Faker
 {
     class Zoo
     {
-        public Bar bar;
+        //public Bar bar;
         public DateTime dateTime;
         public float fl;
         public string str;

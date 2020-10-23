@@ -20,7 +20,7 @@ namespace Faker
 
             var faker = new FakerLib.Faker(context);
 
-            Zoo zoo = faker.Create<Zoo>();
+            List<Zoo> zoo = faker.Create<List<Zoo>>();
 
             Console.WriteLine(JsonConvert.SerializeObject(zoo, Formatting.Indented));
         }
