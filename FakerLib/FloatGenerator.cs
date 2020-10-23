@@ -6,7 +6,12 @@ namespace FakerLib
 {
     class FloatGenerator : IGenerator
     {
-        public object Generate()
+        public bool CanGenerate(Type type)
+        {
+            return (typeof(float) == type);
+        }
+
+        public object Generate(Type targetType, GeneratorContext generatorContext)
         {
             var rand = new Random();
 

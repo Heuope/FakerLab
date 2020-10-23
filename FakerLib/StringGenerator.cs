@@ -6,7 +6,12 @@ namespace FakerLib
 {
     class StringGenerator : IGenerator
     {
-        public object Generate()
+        public bool CanGenerate(Type type)
+        {
+            return (typeof(string) == type);
+        }
+
+        public object Generate(Type targetType, GeneratorContext generatorContext)
         {
             var str = new StringBuilder();
             var rand = new Random();

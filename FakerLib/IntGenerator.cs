@@ -6,7 +6,12 @@ namespace FakerLib
 {
     class IntGenerator : IGenerator
     {
-        public object Generate()
+        public bool CanGenerate(Type type)
+        {
+            return (typeof(int) == type);
+        }
+
+        public object Generate(Type targetType, GeneratorContext generatorContext)
         {
             var rand = new Random();
             return rand.Next(1, 100);

@@ -6,6 +6,8 @@ namespace FakerLib
 {
     public interface IGenerator
     {
-        object Generate();
+        object Generate(Type targetType, GeneratorContext generatorContext);
+
+        bool CanGenerate(Type type);
     }
 }

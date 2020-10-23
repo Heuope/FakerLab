@@ -5,11 +5,11 @@ using System.Reflection;
 
 namespace FakerLib
 {
-    public class Test
+    public class Faker
     {
         private GeneratorContext _context;
 
-        public Test(GeneratorContext generatorContext)
+        public Faker(GeneratorContext generatorContext)
         {
             _context = generatorContext;
         }
@@ -21,9 +21,9 @@ namespace FakerLib
 
         private object Create(Type t)
         {
-            if (_context.generatros.ContainsKey(t))
+            if (_context.Generate(t) != null)
             {
-                return _context.generatros[t].Generate();
+                return _context.Generate(t);
             }
 
             var constructorInfos = t.GetConstructors();          
@@ -32,7 +32,7 @@ namespace FakerLib
 
             constructorInfos.OrderByDescending(x => x.GetParameters().Count());
 
-            object obj = CreateWithConstructor(constructorInfos, t);                        
+            object obj = CreateWithConstructor(constructorInfos, t);
 
             return obj;
         }
@@ -46,7 +46,7 @@ namespace FakerLib
             {                
                 foreach (var param in constructor.GetParameters())
                 {
-                    var faker = new Test(_context);
+                    var faker = new Faker(_context);
                     var parametr = faker.Create(param.ParameterType);
                     paramList.Add(parametr);
                 }
@@ -68,7 +68,7 @@ namespace FakerLib
         private object[] CreateFields(FieldInfo[] fieldInfos, object obj)
         {
             var fieldsList = new List<object>();
-            var faker = new Test(_context);
+            var faker = new Faker(_context);
 
             foreach (var property in fieldInfos)
             {
@@ -80,7 +80,7 @@ namespace FakerLib
         private object[] CreateProperty(PropertyInfo[] propertyInfos)
         {
             var fieldsList = new List<object>();
-            var faker = new Test(_context);
+            var faker = new Faker(_context);
 
             foreach (var property in propertyInfos)
             {
