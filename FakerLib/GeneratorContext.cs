@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Text;
 
 namespace FakerLib
 {
     public class GeneratorContext
     {
-        private List<IGenerator> generators = new List<IGenerator>();
+        private List<IGenerator> _generators = new List<IGenerator>();
 
         public object Generate(Type t)
         {
-            foreach (var generator in generators)
+            foreach (var generator in _generators)
             {
                 if (generator.CanGenerate(t))
                 {
@@ -20,17 +21,22 @@ namespace FakerLib
             return null;
         }
 
-        public GeneratorContext()
+        public void LoadNewGenerator(string pathToDll)
         {
-            generators.Add(new IntGenerator());
-            generators.Add(new StringGenerator());
-            generators.Add(new FloatGenerator());
-            generators.Add(new ListGenerator());
+            Assembly assembly = Assembly.LoadFrom(pathToDll);
+            foreach (var type in assembly.GetTypes())
+            {
+                var temp = Activator.CreateInstance(type);
+                if (temp is IGenerator)
+                {
+                    _generators.Add((IGenerator)temp);
+                }
+            }
         }
 
         public void AddNewGenerator(IGenerator generator)
         {
-            generators.Add(generator);
+            _generators.Add(generator);
         }
     }
 }

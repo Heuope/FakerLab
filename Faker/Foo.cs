@@ -6,7 +6,7 @@ namespace Faker
 {
     class Foo
     {
-        //public float c;
+        public double c;
 
         public Zoo zoo;
 

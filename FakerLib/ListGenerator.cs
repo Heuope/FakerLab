@@ -4,7 +4,7 @@ using System.Text;
 
 namespace FakerLib
 {
-    class ListGenerator : IGenerator
+    public class ListGenerator : IGenerator
     {
         public bool CanGenerate(Type type)
         {

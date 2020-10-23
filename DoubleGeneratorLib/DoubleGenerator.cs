@@ -1,20 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using FakerLib;
 
-namespace FakerLib
+namespace DoubleGeneratorLib
 {
-    public class IntGenerator : IGenerator
+    public class DoubleGenerator : IGenerator
     {
         public bool CanGenerate(Type type)
         {
-            return (typeof(int) == type);
+            return (typeof(double) == type);
         }
 
         public object Generate(Type targetType, GeneratorContext generatorContext)
         {
             var rand = new Random();
-            return rand.Next(1, 100);
+
+            return (rand.NextDouble() * (1 - 0.1) + 0.1);
         }
     }
 }

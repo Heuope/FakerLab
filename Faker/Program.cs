@@ -11,11 +11,18 @@ namespace Faker
         {
             var context = new GeneratorContext();
 
+            context.AddNewGenerator(new IntGenerator());
+            context.AddNewGenerator(new StringGenerator());
+            context.AddNewGenerator(new ListGenerator());
+            context.AddNewGenerator(new DateTimeGenerator());
+            context.LoadNewGenerator(@"C:\Users\konst_9hggwum\OneDrive\Desktop\FakerLab\FloatGeneratorLib\bin\Debug\netcoreapp3.1\FloatGeneratorLib.dll");
+            context.LoadNewGenerator(@"C:\Users\konst_9hggwum\OneDrive\Desktop\FakerLab\DoubleGeneratorLib\bin\Debug\netcoreapp3.1\DoubleGeneratorLib.dll");
+
             var faker = new FakerLib.Faker(context);
 
-            Zoo t = faker.Create<Zoo>();
+            Zoo zoo = faker.Create<Zoo>();
 
-            Console.WriteLine(JsonConvert.SerializeObject(t));
+            Console.WriteLine(JsonConvert.SerializeObject(zoo, Formatting.Indented));
         }
     }
 }

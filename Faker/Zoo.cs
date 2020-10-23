@@ -6,13 +6,15 @@ namespace Faker
 {
     class Zoo
     {
-        //public Bar bar;
-        public int some;
-        public int s { get; }
+        public Bar bar;
+        public DateTime dateTime;
+        public float fl;
+        public string str;
+        public int t { get; set; }
 
-        public Zoo()
+        public Zoo(float fl)
         {
-            
+            this.fl = fl;
         }
     }
 }

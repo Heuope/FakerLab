@@ -5,7 +5,11 @@ VisualStudioVersion = 16.0.29418.71
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Faker", "Faker\Faker.csproj", "{6133D5B3-F3CE-439E-BC20-F70F934449D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FakerLib", "FakerLib\FakerLib.csproj", "{268D5346-B4A4-473A-B7C0-CABD0D5CE929}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FakerLib", "FakerLib\FakerLib.csproj", "{268D5346-B4A4-473A-B7C0-CABD0D5CE929}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FloatGeneratorLib", "FloatGeneratorLib\FloatGeneratorLib.csproj", "{5C6C25F8-9FEB-4545-AD71-526A0696F45E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoubleGeneratorLib", "DoubleGeneratorLib\DoubleGeneratorLib.csproj", "{69050544-BF5E-4A43-BA80-A0C4550C54F3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{268D5346-B4A4-473A-B7C0-CABD0D5CE929}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{268D5346-B4A4-473A-B7C0-CABD0D5CE929}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{268D5346-B4A4-473A-B7C0-CABD0D5CE929}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C6C25F8-9FEB-4545-AD71-526A0696F45E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C6C25F8-9FEB-4545-AD71-526A0696F45E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C6C25F8-9FEB-4545-AD71-526A0696F45E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C6C25F8-9FEB-4545-AD71-526A0696F45E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69050544-BF5E-4A43-BA80-A0C4550C54F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69050544-BF5E-4A43-BA80-A0C4550C54F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69050544-BF5E-4A43-BA80-A0C4550C54F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69050544-BF5E-4A43-BA80-A0C4550C54F3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

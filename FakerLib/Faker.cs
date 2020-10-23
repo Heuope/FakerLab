@@ -92,7 +92,7 @@ namespace FakerLib
                     }
                     catch (Exception)
                     {
-                        return null;
+                        field.SetValue(obj, default);
                     }
                 }
                 else
@@ -103,7 +103,7 @@ namespace FakerLib
                     }
                     catch (Exception)
                     {
-                        return null;
+                        field.SetValue(obj, default);
                     }
                 }
             }
@@ -121,7 +121,7 @@ namespace FakerLib
                     }
                     catch (Exception)
                     {
-                        return null;
+                        property.SetValue(obj, default);
                     }
                 }
                 else
@@ -132,7 +132,7 @@ namespace FakerLib
                     }
                     catch (Exception)
                     {
-                        return null;
+                        property.SetValue(obj, default);
                     }
                 }
             }

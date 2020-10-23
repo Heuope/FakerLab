@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using FakerLib;
 
-namespace FakerLib
+namespace FloatGeneratorLib
 {
-    class FloatGenerator : IGenerator
+    public class FloatGenerator : IGenerator
     {
         public bool CanGenerate(Type type)
         {
