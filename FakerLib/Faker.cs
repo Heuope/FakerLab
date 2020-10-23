@@ -43,7 +43,7 @@ namespace FakerLib
             var propertyInfos = t.GetProperties();
             var fieldInfos = t.GetFields();
 
-            constructorInfos.OrderByDescending(x => x.GetParameters().Count());
+            constructorInfos = constructorInfos.OrderByDescending(x => x.GetParameters().Count()).ToArray();
 
             var paramList = new List<object>();
             var obj = new object();

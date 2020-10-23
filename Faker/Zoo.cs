@@ -16,5 +16,11 @@ namespace Faker
         {
             this.fl = fl;
         }
+
+        public Zoo(float fl, int s)
+        {
+            this.fl = fl;
+            t = s;
+        }
     }
 }

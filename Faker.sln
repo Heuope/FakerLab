@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FloatGeneratorLib", "FloatG
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoubleGeneratorLib", "DoubleGeneratorLib\DoubleGeneratorLib.csproj", "{69050544-BF5E-4A43-BA80-A0C4550C54F3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FakerLib.Tests", "FakerLib.Tests\FakerLib.Tests.csproj", "{0720F597-8F74-4D97-903A-7FC15B2EF716}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{69050544-BF5E-4A43-BA80-A0C4550C54F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{69050544-BF5E-4A43-BA80-A0C4550C54F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{69050544-BF5E-4A43-BA80-A0C4550C54F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0720F597-8F74-4D97-903A-7FC15B2EF716}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0720F597-8F74-4D97-903A-7FC15B2EF716}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0720F597-8F74-4D97-903A-7FC15B2EF716}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0720F597-8F74-4D97-903A-7FC15B2EF716}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
