@@ -8,10 +8,18 @@ namespace FakerLib
     public class Faker
     {
         private GeneratorContext _context;
+        private Stack<Type> _types;
 
         public Faker(GeneratorContext generatorContext)
         {
             _context = generatorContext;
+            _types = new Stack<Type>();
+        }
+
+        private Faker(GeneratorContext generatorContext, Stack<Type> types)
+        {
+            _context = generatorContext;
+            _types = types;
         }
 
         public T Create<T>()
@@ -21,6 +29,11 @@ namespace FakerLib
 
         private object Create(Type t)
         {
+            if (_types.Contains(t))
+                return null;
+
+            _types.Push(t);
+
             if (_context.Generate(t) != null)
             {
                 return _context.Generate(t);
@@ -32,25 +45,17 @@ namespace FakerLib
 
             constructorInfos.OrderByDescending(x => x.GetParameters().Count());
 
-            object obj = CreateWithConstructor(constructorInfos, t);
-
-            return obj;
-        }
-
-        private object CreateWithConstructor(ConstructorInfo[] constructorInfos, Type t)
-        {
             var paramList = new List<object>();
             var obj = new object();
 
+            var faker = new Faker(_context, _types);
+
             foreach (var constructor in constructorInfos)
-            {                
+            {
                 foreach (var param in constructor.GetParameters())
                 {
-                    var faker = new Faker(_context);
-                    var parametr = faker.Create(param.ParameterType);
-                    paramList.Add(parametr);
+                    paramList.Add(faker.Create(param.ParameterType));
                 }
-
                 try
                 {
                     obj = Activator.CreateInstance(t, paramList.ToArray());
@@ -61,32 +66,79 @@ namespace FakerLib
                     paramList.Clear();
                 }
             }
-
-            return obj;
-        }
-        
-        private object[] CreateFields(FieldInfo[] fieldInfos, object obj)
-        {
-            var fieldsList = new List<object>();
-            var faker = new Faker(_context);
-
-            foreach (var property in fieldInfos)
+            if (obj == null)
             {
-                fieldsList.Add(faker.Create(property.FieldType));
+                try
+                {
+                    obj = Activator.CreateInstance(t);
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
             }
-            return fieldsList.ToArray();
-        }
 
-        private object[] CreateProperty(PropertyInfo[] propertyInfos)
-        {
-            var fieldsList = new List<object>();
-            var faker = new Faker(_context);
-
+            foreach (var field in fieldInfos)
+            {
+                if (_context.Generate(field.FieldType) == null)
+                {
+                    if (_types.Contains(field.FieldType))
+                    {
+                        continue;
+                    }
+                    try
+                    {
+                        field.SetValue(obj, faker.Create(field.FieldType));
+                    }
+                    catch (Exception)
+                    {
+                        return null;
+                    }
+                }
+                else
+                {
+                    try
+                    {
+                        field.SetValue(obj, _context.Generate(field.FieldType));
+                    }
+                    catch (Exception)
+                    {
+                        return null;
+                    }
+                }
+            }
             foreach (var property in propertyInfos)
             {
-                fieldsList.Add(faker.Create(property.PropertyType));
+                if (_context.Generate(property.PropertyType) == null)
+                {
+                    if (_types.Contains(property.PropertyType))
+                    {
+                        continue;
+                    }
+                    try
+                    {
+                        property.SetValue(obj, faker.Create(property.PropertyType));
+                    }
+                    catch (Exception)
+                    {
+                        return null;
+                    }
+                }
+                else
+                {
+                    try
+                    {
+                        property.SetValue(obj, _context.Generate(property.PropertyType));
+                    }
+                    catch (Exception)
+                    {
+                        return null;
+                    }
+                }
             }
-            return fieldsList.ToArray();
+
+            _types.Pop();
+            return obj;
         }
     }
 }

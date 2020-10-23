@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using FakerLib;
+using Newtonsoft.Json;
 
 namespace Faker
 {
@@ -12,18 +13,9 @@ namespace Faker
 
             var faker = new FakerLib.Faker(context);
 
-            Bar t = faker.Create<Bar>();
+            Zoo t = faker.Create<Zoo>();
 
-            Console.WriteLine(t.a);
-            Console.WriteLine(t.b);
-            Console.WriteLine(t.foo.c);
-            foreach (var item in t.e)
-            {
-                foreach (var s in item)
-                {
-                    Console.Write($"{s} ");
-                }
-            }
+            Console.WriteLine(JsonConvert.SerializeObject(t));
         }
     }
 }

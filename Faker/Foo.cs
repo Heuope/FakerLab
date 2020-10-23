@@ -6,11 +6,13 @@ namespace Faker
 {
     class Foo
     {
-        public float c;
+        //public float c;
 
-        public Foo(float c)
+        public Zoo zoo;
+
+        public Foo(Zoo zoo)
         {
-            this.c = c;
+            this.zoo = zoo;
         }
     }
 }
