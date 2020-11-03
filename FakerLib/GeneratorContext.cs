@@ -5,7 +5,7 @@ using System.Text;
 
 namespace FakerLib
 {
-    public class GeneratorContext
+    public class GeneratorContext : IGeneratorContext
     {
         private List<IGenerator> _generators = new List<IGenerator>();
 

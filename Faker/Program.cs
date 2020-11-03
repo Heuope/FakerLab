@@ -15,13 +15,13 @@ namespace Faker
             context.AddNewGenerator(new StringGenerator());
             context.AddNewGenerator(new ListGenerator());
             context.AddNewGenerator(new DateTimeGenerator());
-            context.LoadNewGenerator(@"C:\Users\konst_9hggwum\OneDrive\Desktop\FakerLab\FloatGeneratorLib\bin\Debug\netcoreapp3.1\FloatGeneratorLib.dll");
-            context.LoadNewGenerator(@"C:\Users\konst_9hggwum\OneDrive\Desktop\FakerLab\DoubleGeneratorLib\bin\Debug\netcoreapp3.1\DoubleGeneratorLib.dll");
+            context.LoadNewGenerator(@"C:\Users\konst\Desktop\FakerLab\DoubleGeneratorLib\bin\Debug\netcoreapp3.1\DoubleGeneratorLib.dll");
+            context.LoadNewGenerator(@"C:\Users\konst\Desktop\FakerLab\FloatGeneratorLib\bin\Debug\netcoreapp3.1\FloatGeneratorLib.dll");
 
             var faker = new FakerLib.Faker(context);
 
-            List<Zoo> zoo = faker.Create<List<Zoo>>();
-
+            List<int> zoo = faker.Create<List<int>>();
+            Console.WriteLine(zoo.Count);
             Console.WriteLine(JsonConvert.SerializeObject(zoo, Formatting.Indented));
         }
     }

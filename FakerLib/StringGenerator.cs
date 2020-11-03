@@ -11,7 +11,7 @@ namespace FakerLib
             return (typeof(string) == type);
         }
 
-        public object Generate(Type targetType, GeneratorContext generatorContext)
+        public object Generate(Type targetType, IGeneratorContext generatorContext)
         {
             var str = new StringBuilder();
             var rand = new Random();

@@ -7,19 +7,13 @@ namespace FakerLib
 {
     public class Faker
     {
-        private GeneratorContext _context;
+        private IGeneratorContext _context;
         private Stack<Type> _types;
 
-        public Faker(GeneratorContext generatorContext)
+        public Faker(IGeneratorContext generatorContext)
         {
             _context = generatorContext;
             _types = new Stack<Type>();
-        }
-
-        private Faker(GeneratorContext generatorContext, Stack<Type> types)
-        {
-            _context = generatorContext;
-            _types = types;
         }
 
         public T Create<T>()
@@ -30,14 +24,19 @@ namespace FakerLib
         public object Create(Type t)
         {
             if (_types.Contains(t))
+            {                
                 return null;
+            }
 
             _types.Push(t);
 
-            if (_context.Generate(t) != null)
+            var temp = _context.Generate(t);
+
+            if (temp != null)
             {
-                return _context.Generate(t);
-            }
+                _types.Pop();
+                return temp;
+            }    
 
             var constructorInfos = t.GetConstructors();          
             var propertyInfos = t.GetProperties();
@@ -46,15 +45,13 @@ namespace FakerLib
             constructorInfos = constructorInfos.OrderByDescending(x => x.GetParameters().Count()).ToArray();
 
             var paramList = new List<object>();
-            var obj = new object();
-
-            var faker = new Faker(_context, _types);
+            var obj = new object();           
 
             foreach (var constructor in constructorInfos)
             {
                 foreach (var param in constructor.GetParameters())
                 {
-                    paramList.Add(faker.Create(param.ParameterType));
+                    paramList.Add(Create(param.ParameterType));
                 }
                 try
                 {
@@ -76,48 +73,37 @@ namespace FakerLib
                 {
                     return null;
                 }
-            }
+            }          
 
             foreach (var field in fieldInfos)
             {
-                if (_context.Generate(field.FieldType) == null)
-                {
-                    if (_types.Contains(field.FieldType))
-                    {
-                        continue;
-                    }
+                var fieldTemp = Create(field.FieldType);
+
+                if (fieldTemp != null)
+                {                    
                     try
                     {
-                        field.SetValue(obj, faker.Create(field.FieldType));
+                        field.SetValue(obj, fieldTemp);
                     }
                     catch (Exception)
                     {
                         field.SetValue(obj, default);
-                    }
+                    }                    
                 }
                 else
                 {
-                    try
-                    {
-                        field.SetValue(obj, _context.Generate(field.FieldType));
-                    }
-                    catch (Exception)
-                    {
-                        field.SetValue(obj, default);
-                    }
-                }
+                    field.SetValue(obj, default);
+                }               
             }
             foreach (var property in propertyInfos)
             {
-                if (_context.Generate(property.PropertyType) == null)
+                var propertyTemp = Create(property.PropertyType);
+
+                if (propertyTemp != null)
                 {
-                    if (_types.Contains(property.PropertyType))
-                    {
-                        continue;
-                    }
                     try
                     {
-                        property.SetValue(obj, faker.Create(property.PropertyType));
+                        property.SetValue(obj, propertyTemp);
                     }
                     catch (Exception)
                     {
@@ -126,14 +112,7 @@ namespace FakerLib
                 }
                 else
                 {
-                    try
-                    {
-                        property.SetValue(obj, _context.Generate(property.PropertyType));
-                    }
-                    catch (Exception)
-                    {
-                        property.SetValue(obj, default);
-                    }
+                    property.SetValue(obj, default);
                 }
             }
 

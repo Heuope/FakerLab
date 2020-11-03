@@ -6,13 +6,13 @@ namespace Faker
 {
     class Bar
     {
-        public string a;
-        public int b;
-        public List<List<int>> e; 
+        //public string a;
+        //public int b;
+        //public List<List<int>> e; 
 
-        public Foo foo;
+        public Zoo foo;
 
-        public Bar(Foo foo)
+        public Bar(Zoo foo)
         {
             this.foo = foo;
         }

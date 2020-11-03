@@ -6,21 +6,26 @@ namespace Faker
 {
     class Zoo
     {
-        //public Bar bar;
-        public DateTime dateTime;
-        public float fl;
-        public string str;
-        public int t { get; set; }
+        public Bar bar;
+        //public DateTime dateTime;
+        //public float fl;
+        //public string str;
+        //public int t { get; set; }
 
-        public Zoo(float fl)
+        public Zoo(Bar bar)
         {
-            this.fl = fl;
+            this.bar = bar;
         }
 
-        public Zoo(float fl, int s)
-        {
-            this.fl = fl;
-            t = s;
-        }
+        //public Zoo(float fl)
+        //{
+        //    this.fl = fl;
+        //}
+
+        //public Zoo(float fl, int s)
+        //{
+        //    this.fl = fl;
+        //    t = s;
+        //}
     }
 }

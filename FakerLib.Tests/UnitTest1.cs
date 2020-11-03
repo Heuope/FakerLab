@@ -1,5 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FakerLib;
+using System.Collections.Generic;
 
 namespace FakerLib.Tests
 {
@@ -17,8 +18,8 @@ namespace FakerLib.Tests
             context.AddNewGenerator(new StringGenerator());
             context.AddNewGenerator(new ListGenerator());
             context.AddNewGenerator(new DateTimeGenerator());
-            context.LoadNewGenerator(@"C:\Users\konst_9hggwum\OneDrive\Desktop\FakerLab\FloatGeneratorLib\bin\Debug\netcoreapp3.1\FloatGeneratorLib.dll");
-            context.LoadNewGenerator(@"C:\Users\konst_9hggwum\OneDrive\Desktop\FakerLab\DoubleGeneratorLib\bin\Debug\netcoreapp3.1\DoubleGeneratorLib.dll");
+            context.LoadNewGenerator(@"C:\Users\konst\Desktop\FakerLab\DoubleGeneratorLib\bin\Debug\netcoreapp3.1\DoubleGeneratorLib.dll");
+            context.LoadNewGenerator(@"C:\Users\konst\Desktop\FakerLab\FloatGeneratorLib\bin\Debug\netcoreapp3.1\FloatGeneratorLib.dll");
 
             _faker = new Faker(context);
         }
@@ -132,6 +133,24 @@ namespace FakerLib.Tests
         {
             Rec1 rec = _faker.Create<Rec1>();
             Assert.AreEqual(null, rec.A.B);
+        }
+
+        [TestMethod]
+        public void GenericListTest()
+        {
+            List<int> intList = _faker.Create<List<int>>();
+            Assert.AreEqual(true, intList.Count > 0);
+            Assert.AreEqual(true, intList[0].GetType() == typeof(int));
+        }
+
+        [TestMethod]
+        public void GenericListListTest()
+        {
+            List<List<int>> intList = _faker.Create<List<List<int>>>();
+            Assert.AreEqual(true, intList.Count > 0);
+            Assert.AreEqual(true, intList[0].Count > 0);
+            Assert.AreEqual(true, intList[0].GetType() == typeof(List<int>));
+            Assert.AreEqual(true, intList[0][0].GetType() == typeof(int));
         }
     }
 }

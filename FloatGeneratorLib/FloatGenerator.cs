@@ -10,7 +10,7 @@ namespace FloatGeneratorLib
             return (typeof(float) == type);
         }
 
-        public object Generate(Type targetType, GeneratorContext generatorContext)
+        public object Generate(Type targetType, IGeneratorContext generatorContext)
         {
             var rand = new Random();
 
