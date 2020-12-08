@@ -7,11 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Faker", "Faker\Faker.csproj
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FakerLib", "FakerLib\FakerLib.csproj", "{268D5346-B4A4-473A-B7C0-CABD0D5CE929}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FloatGeneratorLib", "FloatGeneratorLib\FloatGeneratorLib.csproj", "{5C6C25F8-9FEB-4545-AD71-526A0696F45E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FloatGeneratorLib", "FloatGeneratorLib\FloatGeneratorLib.csproj", "{5C6C25F8-9FEB-4545-AD71-526A0696F45E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoubleGeneratorLib", "DoubleGeneratorLib\DoubleGeneratorLib.csproj", "{69050544-BF5E-4A43-BA80-A0C4550C54F3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DoubleGeneratorLib", "DoubleGeneratorLib\DoubleGeneratorLib.csproj", "{69050544-BF5E-4A43-BA80-A0C4550C54F3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FakerLib.Tests", "FakerLib.Tests\FakerLib.Tests.csproj", "{0720F597-8F74-4D97-903A-7FC15B2EF716}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FakerLib.Tests", "FakerLib.Tests\FakerLib.Tests.csproj", "{0720F597-8F74-4D97-903A-7FC15B2EF716}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
